@@ -66,8 +66,10 @@ def direction ():
                  global dire
                  dire = str(input("what direction should the spriral go? 1 = right. 2 = left"))
                  
-                            
 
+def reset():
+    t.reset()
+    print("the drawings have been removed")
 
 def custom():
     global dire
@@ -89,10 +91,18 @@ def custom():
                  direction()
 
 while True:
-    inst = str(input("What do you want to draw? 1 left spiral. 2  right sprial 3 custom"))
+    inst = str(input("""What do you want to draw? 
+                           1= left spiral. 
+                           2= right sprial. 
+                           3= custom.
+                           4= reset """))
     if inst == "1":
         left_spiral()
     elif inst == "2":
         right_spiral()
     elif inst == "3":
         custom()
+    elif inst == "4":
+        reset()
+    else:
+        print("I dont understand...")
