@@ -58,6 +58,13 @@ def right_spiral():
         t.forward(x)
         t.right(89)
 
+
+def angle_2():
+    global angle1
+    sides = int(input("how many sides do you want?"))
+    angle1 = int(360 / sides)
+
+
 def angle():
     global angle1
     angle1 = int(input("what should the turn angle be for the spiral? (degrees)"))
@@ -70,15 +77,33 @@ def direction ():
 def reset():
     t.reset()
     print("the drawings have been removed")
+    t.speed(150)
 
-def custom():
+def choice():
+                choice = str(input("""Do you want to select how many sides the shape has or do you wish to input a specific turning angle?
+                                   1= Pick sides.
+                                   2= Pick turn angle."""))
+                if choice == "1":
+                        angle_2()
+                        
+                elif choice == "2":
+                        angle()
+                else:
+                        print("I dont understand...")
+                        choice()
+                
+                
+                
+
+
+def custom_1():
     global dire
     global size1
     global angle1           
     position()
     color()
     size()
-    angle()
+    choice()
     direction()
     for x in range(size1):
             t.forward(x)
@@ -101,8 +126,11 @@ while True:
     elif inst == "2":
         right_spiral()
     elif inst == "3":
-        custom()
+        custom_1()
     elif inst == "4":
         reset()
     else:
         print("I dont understand...")
+
+
+
