@@ -22,7 +22,6 @@ def color():
                 t.pencolor("yellow")
     elif color1 == "4":
                 t.pencolor("red")
-                    
     elif color1 == "5":
                 t.pencolor("black")
                 
@@ -36,6 +35,7 @@ def position():
     t.pu()
     t.goto(x_p , y_p)
     t.pd()
+    t.seth(0)
 def size():
     global size1
     size1 = int(input("how big should the shape be (in pixels) recomended:200"))
@@ -58,12 +58,15 @@ def right_spiral():
         t.forward(x)
         t.right(89)
 
+def angle_s():
+    global angles
+    sides = int(input("how many sides do you want?"))
+    angles = int((360 / sides)+1)
 
 def angle_2():
     global angle1
     sides = int(input("how many sides do you want?"))
     angle1 = int(360 / sides)
-
 
 def angle():
     global angle1
@@ -73,7 +76,6 @@ def direction ():
                  global dire
                  dire = str(input("what direction should the spriral go? 1 = right. 2 = left"))
                  
-
 def reset():
     t.reset()
     print("the drawings have been removed")
@@ -91,12 +93,27 @@ def choice():
                 else:
                         print("I dont understand...")
                         choice()
-                
-                
-                
+               
+def custom_spiral():
+    global dire
+    global size1
+    global angles           
+    position()
+    color()
+    size()
+    angle_s()
+    direction()
+    for x in range(size1):
+            t.forward(x)
+            if dire == "1":
+                 t.right(angles)
+            elif dire == "2":
+                 t.left(angles)
+            else:
+                 print("you didnt pick right or left")
+                 direction()
 
-
-def custom_1():
+def custom_shape():
     global dire
     global size1
     global angle1           
@@ -116,18 +133,22 @@ def custom_1():
                  direction()
 
 while True:
+    t.seth(0)
     inst = str(input("""What do you want to draw? 
                            1= left spiral. 
                            2= right sprial. 
-                           3= custom.
-                           4= reset """))
+                           3= custom shape
+                           4= custom spiral
+                           5= reset """))
     if inst == "1":
         left_spiral()
     elif inst == "2":
         right_spiral()
     elif inst == "3":
-        custom_1()
+        custom_shape()
     elif inst == "4":
+        custom_spiral()
+    elif inst == "5":
         reset()
     else:
         print("I dont understand...")
